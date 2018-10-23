@@ -29,32 +29,36 @@ def train():
     fw = open("xy","wb")
     pickle.dump(clf,fw)
     fw.close()
-    #测试
+    # 测试
     pre = clf.predict(x_text)
-    #输出测试结果准确率
-    print(sklearn.metrics.accuracy_score(y_test,pre,normalize=True))
+    # 输出测试结果准确率
+    print(sklearn.metrics.accuracy_score(y_test, pre, normalize=True))
+
+
 def load():
-    #加载模型
-    fr = open("xy","rb")
-    flt =pickle.load(fr)
+    # 加载模型
+    fr = open("xy", "rb")
+    flt = pickle.load(fr)
     fr.close()
     while 1:
         instr = input("请输入坐标以逗号隔开(q退出)\n")
         if instr == 'q':
             return
-        strss =instr.split(',')
-        if len(strss)!=2:
+        strss = instr.split(',')
+        if len(strss) != 2:
             print("请输入正确数据")
             continue
         arr = [[int(i) for i in strss]]
-        #预测
-        if flt.predict(arr)[0]==0:
+        # 预测
+        if flt.predict(arr)[0] == 0:
             print("空测数据")
-        if flt.predict(arr)[0]==1:
+        if flt.predict(arr)[0] == 1:
             print("安全数据")
-        if flt.predict(arr)[0]==-1:
+        if flt.predict(arr)[0] == -1:
             print("危险数据")
         print(flt.predict(arr))
-if __name__ =="__main__":
+
+
+if __name__ == "__main__":
     load()
     #train()
