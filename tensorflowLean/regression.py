@@ -9,6 +9,7 @@ import tensorflow as tf
 import os
 import random
 
+
 def myregression():
     """
     线性回归训练
